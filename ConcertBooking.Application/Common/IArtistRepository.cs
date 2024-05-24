@@ -9,6 +9,6 @@ namespace ConcertBooking.Application.Common
 {
     public interface IArtistRepository :IGenericRepository<Artist>
     {
-        Task UpdateArtist(Artist artist);
+        void UpdateArtist(Artist artist);
     }
 }
