@@ -20,6 +20,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 builder.Services.AddScoped<IVenueService, VenueService>();
 builder.Services.AddScoped<IArtistService, ArtistService>();
 builder.Services.AddScoped<IUtilityService, UtilityService>();
+builder.Services.AddScoped<IDbInitial, DbInitial>();
 
 
 builder.Services.ConfigureApplicationCookie(options =>
@@ -40,6 +41,16 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+DataSeed();
+
+void DataSeed()
+{
+   using (var scope = app.Services.CreateScope())
+    {
+        var dbSeedRepo = scope.ServiceProvider.GetRequiredService<IDbInitial>();
+        dbSeedRepo.DataSeed();
+    }
 }
 
 app.UseHttpsRedirection();
