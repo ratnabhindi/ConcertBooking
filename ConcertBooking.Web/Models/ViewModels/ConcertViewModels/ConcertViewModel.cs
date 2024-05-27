@@ -6,6 +6,6 @@
         public string Name { get; set; }
         public DateTime DateTime { get; set; }
         public string VenueName { get; set; }
-        public string Artistname { get; set; }
+        public string ArtistName { get; set; }
     }
 }

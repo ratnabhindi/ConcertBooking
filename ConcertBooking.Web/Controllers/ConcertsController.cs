@@ -41,7 +41,7 @@ namespace ConcertBooking.Web.Controllers
                 {
                     Id = concert.Id,
                     Name = concert.Name,
-                    Artistname = concert.Artist.Name,
+                    ArtistName = concert.Artist.Name,
                     VenueName = concert.Venue.Name,
                     DateTime = concert.DateTime,
                 });
