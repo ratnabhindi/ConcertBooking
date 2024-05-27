@@ -6,6 +6,7 @@ using ConcertBooking.Application.Services.Interfaces;
 using ConcertBooking.Application.Services.Implementations;
 using ConcertBooking.Application.Common;
 using ConcertBooking.Infrastructure.Repository;
+using Microsoft.Build.Framework;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 
 builder.Services.AddScoped<IVenueService, VenueService>();
 builder.Services.AddScoped<IArtistService, ArtistService>();
+builder.Services.AddScoped<IConcertService, ConcertService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IUtilityService, UtilityService>();
 builder.Services.AddScoped<IDbInitial, DbInitial>();
 

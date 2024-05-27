@@ -1,18 +1,20 @@
 ﻿using ConcertBooking.Application.Services.Interfaces;
 using ConcertBooking.Domain.Models;
 using ConcertBooking.Web.Models.ViewModels.ArtistViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConcertBooking.Web.Controllers
 {
-    public class ArtistController : Controller
+    [Authorize(Roles = "Admin")]
+    public class ArtistsController : Controller
     {
      
         private IUtilityService _utilityService;
         private IArtistService _artistService;
         private string containerName = "ArtistImage";
 
-        public ArtistController(IUtilityService utilityService, IArtistService artistService)
+        public ArtistsController(IUtilityService utilityService, IArtistService artistService)
         {
             _utilityService = utilityService;
             _artistService = artistService;

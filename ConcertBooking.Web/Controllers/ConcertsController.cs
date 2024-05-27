@@ -2,11 +2,13 @@
 using ConcertBooking.Domain.Models;
 using ConcertBooking.Web.Models.ViewModels.ConcertViewModels;
 using ConcertBooking.Web.Models.ViewModels.DashboardViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ConcertBooking.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ConcertsController : Controller
     {
         private readonly IArtistService _artistService;
@@ -20,15 +22,13 @@ namespace ConcertBooking.Web.Controllers
             IBookingService bookingService, 
             IConcertService concertService, 
             IUtilityService utilityService, 
-            IVenueService venueService, 
-            string containerName)
+            IVenueService venueService)
         {
             _artistService = artistService;
             _bookingService = bookingService;
             _concertService = concertService;
             _utilityService = utilityService;
-            _venueService = venueService;
-            this.containerName = containerName;
+            _venueService = venueService;         
         }
 
         public IActionResult Index()
@@ -99,7 +99,8 @@ namespace ConcertBooking.Web.Controllers
                 ImageUrl = concert.ImageUrl,
                 ArtistId = concert.ArtistId,
                 VenueId = concert.VenueId,
-                Description = concert.Description
+                Description = concert.Description,
+                DateTime = concert.DateTime
             };
 
             return View(vm);
