@@ -2,6 +2,10 @@ using ConcertBooking.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using ConcertBooking.Domain.Models;
+using ConcertBooking.Application.Services.Interfaces;
+using ConcertBooking.Application.Services.Implementations;
+using ConcertBooking.Application.Common;
+using ConcertBooking.Infrastructure.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +15,11 @@ builder.Services.AddDbContext<ApplicationDBContext>(options=>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDBContext>()
     .AddEntityFrameworkStores<ApplicationDBContext>();
+
+builder.Services.AddScoped<IVenueService, VenueService>();
+builder.Services.AddScoped<IArtistService, ArtistService>();
+builder.Services.AddScoped<IUtilityService, UtilityService>();
 
 
 builder.Services.ConfigureApplicationCookie(options =>
@@ -23,6 +30,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
