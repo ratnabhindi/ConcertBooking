@@ -29,13 +29,13 @@ namespace ConcertBooking.Application.Services.Implementations
             return Task.CompletedTask;
         }
 
-        public async Task<string> EditImage(string containerName, IFormFile file, string dbPath)
+        public async Task<string> EditImageAsync(string containerName, IFormFile file, string dbPath)
         {
             await DeleteImage(containerName, dbPath);
-            return await SaveImage(containerName, file);
+            return await SaveImageAsync(containerName, file);
         }
 
-        public async Task<string> SaveImage(string containerName, IFormFile file)
+        public async Task<string> SaveImageAsync(string containerName, IFormFile file)
         {
             var extension = Path.GetExtension(file.FileName);
             var filename = $"{Guid.NewGuid()}{extension}";

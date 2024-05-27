@@ -10,8 +10,8 @@ namespace ConcertBooking.Application.Services.Interfaces
 {
     public interface IUtilityService
     {
-        Task<string> SaveImage(string containerName, IFormFile file);
-        Task<string> EditImage(string containerName, IFormFile file, string dbPath);
+        Task<string> SaveImageAsync(string containerName, IFormFile file);
+        Task<string> EditImageAsync(string containerName, IFormFile file, string dbPath);
         Task DeleteImage(string containerName, string dbPath);
 
     }

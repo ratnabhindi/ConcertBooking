@@ -45,7 +45,7 @@ namespace ConcertBooking.Web.Controllers
 
             if(vm.ImageUrl != null)
             {
-                artist.ImageUrl = await _utilityService.SaveImage(containerName, vm.ImageUrl);
+                artist.ImageUrl = await _utilityService.SaveImageAsync(containerName, vm.ImageUrl);
             }
 
             await _artistService.SaveArtist(artist);
@@ -69,7 +69,7 @@ namespace ConcertBooking.Web.Controllers
             artist.Bio = vm.Bio;
             if(vm.ImageUrl != null)
             {
-                artist.ImageUrl = await _utilityService.EditImage(containerName, vm.ChooseImage, artist.ImageUrl);
+                artist.ImageUrl = await _utilityService.EditImageAsync(containerName, vm.ChooseImage, artist.ImageUrl);
             }
             _artistService.UpdateArtist(artist);
 
