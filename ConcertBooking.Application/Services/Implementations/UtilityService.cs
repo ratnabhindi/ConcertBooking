@@ -14,6 +14,12 @@ namespace ConcertBooking.Application.Services.Implementations
         private IWebHostEnvironment _env;
         private IHttpContextAccessor _contentAccessor;
 
+        public UtilityService(IWebHostEnvironment env, IHttpContextAccessor contentAccessor)
+        {
+            _env = env;
+            _contentAccessor = contentAccessor;
+        }
+
         public Task DeleteImage(string containerName, string dbPath)
         {
             if (string.IsNullOrEmpty(dbPath))
